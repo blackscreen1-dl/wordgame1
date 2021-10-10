@@ -1,4 +1,4 @@
-print("The objective of this game is to run the opponent out of moves \non a board.")
+print("The objective of this game is to run the opponent out of moves on a board. When a player leaves a square, the square becomes unusable.")
 sizes = [str(i) for i in range(4,11)]
 size = input("Board size (Between 4 and 10): ")
 while size not in sizes:
