@@ -1,8 +1,8 @@
 print(
     "The objective of this game is to run the opponent out of moves on a"
     " board. When a player leaves a square, the square becomes unusable.")
-sizes = [str(i) for i in range(4, 11)]
-size = input("Board size (Between 4 and 10): ")
+sizes = [str(i) for i in range(4, 16)]
+size = input("Board size (Between 4 and 15): ")
 while size not in sizes:
     size = input("Invalid! Board size (Between 4 and 10): ")
 size = int(size)
@@ -28,8 +28,9 @@ turn = 1
 game_over = False
 win = 0
 board = []
-a_coord = [0, 0]
-b_coord = [size - 1, size - 1]
+coords = []
+coords[0] = [0, 0]
+coords[1] = [size - 1, size - 1]
 
 
 def print_grid():
@@ -52,13 +53,13 @@ while not game_over:
     aval = []
     if turn == 1:
         turn = 2
-        if a_coord[0] != 0 and board[a_coord[0] - 1][a_coord[1]] == 0:
+        if coords[0][0] != 0 and board[coords[0][0] - 1][coords[0][1]] == 0:
             aval.append(0)
-        if a_coord[1] != size - 1 and board[a_coord[0]][a_coord[1] + 1] == 0:
+        if coords[0][1] != size - 1 and board[coords[0][0]][coords[0][1] + 1] == 0:
             aval.append(1)
-        if a_coord[0] != size - 1 and board[a_coord[0] + 1][a_coord[1]] == 0:
+        if coords[0][0] != size - 1 and board[coords[0][0] + 1][coords[0][1]] == 0:
             aval.append(2)
-        if a_coord[1] != 0 and board[a_coord[0]][a_coord[1] - 1] == 0:
+        if coords[0][1] != 0 and board[coords[0][0]][coords[0][1] - 1] == 0:
             aval.append(3)
         if not aval:
             game_over = True
@@ -73,26 +74,26 @@ while not game_over:
         while not chosen.isdigit() or chosen not in l:
             print("Invalid! Options are " + ', '.join(l))
             chosen = input("Move chosen: ")
-        board[a_coord[0]][a_coord[1]] = 3
+        board[coords[0][0]][coords[0][1]] = 3
         chosen = int(chosen)
         if chosen == 0:
-            a_coord[0] -= 1
+            coords[0][0] -= 1
         elif chosen == 1:
-            a_coord[1] += 1
+            coords[0][1] += 1
         elif chosen == 2:
-            a_coord[0] += 1
+            coords[0][0] += 1
         else:
-            a_coord[1] -= 1
-        board[a_coord[0]][a_coord[1]] = 1
+            coords[0][1] -= 1
+        board[coords[0][0]][coords[0][1]] = 1
     else:
         turn = 1
-        if b_coord[0] != 0 and board[b_coord[0] - 1][b_coord[1]] == 0:
+        if coords[1][0] != 0 and board[coords[1][0] - 1][coords[1][1]] == 0:
             aval.append(0)
-        if b_coord[1] != size - 1 and board[b_coord[0]][b_coord[1] + 1] == 0:
+        if coords[1][1] != size - 1 and board[coords[1][0]][coords[1][1] + 1] == 0:
             aval.append(1)
-        if b_coord[0] != size - 1 and board[b_coord[0] + 1][b_coord[1]] == 0:
+        if coords[1][0] != size - 1 and board[coords[1][0] + 1][coords[1][1]] == 0:
             aval.append(2)
-        if b_coord[1] != 0 and board[b_coord[0]][b_coord[1] - 1] == 0:
+        if coords[1][1] != 0 and board[coords[1][0]][coords[1][1] - 1] == 0:
             aval.append(3)
         if not aval:
             game_over = True
@@ -107,17 +108,17 @@ while not game_over:
         while not chosen.isdigit() or chosen not in l:
             print("Invalid! Options are " + ', '.join(l))
             chosen = input("Move chosen: ")
-        board[b_coord[0]][b_coord[1]] = 3
+        board[coords[1][0]][coords[1][1]] = 3
         chosen = int(chosen)
         if chosen == 0:
-            b_coord[0] -= 1
+            coords[1][0] -= 1
         elif chosen == 1:
-            b_coord[1] += 1
+            coords[1][1] += 1
         elif chosen == 2:
-            b_coord[0] += 1
+            coords[1][0] += 1
         else:
-            b_coord[1] -= 1
-        board[b_coord[0]][b_coord[1]] = 2
+            coords[1][1] -= 1
+        board[coords[1][0]][coords[1][1]] = 2
 if win == 2:
     print("Player B wins!")
 else:
