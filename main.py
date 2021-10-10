@@ -28,9 +28,7 @@ turn = 1
 game_over = False
 win = 0
 board = []
-coords = []
-coords[0] = [0, 0]
-coords[1] = [size - 1, size - 1]
+coords = [[0, 0], [size - 1, size - 1]]
 
 
 def print_grid():
