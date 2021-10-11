@@ -1,2 +1,2 @@
 # Word games
-Basically me creating games using python
+Basically me creating games using python / HTML
